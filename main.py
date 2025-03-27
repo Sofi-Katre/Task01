@@ -1,6 +1,6 @@
 from typing import Union
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 
 from random import randint
 
@@ -24,7 +24,7 @@ def randomnumber():
     return {"Number": randint(1,10)}
 
 @app.get("/t_square")
-def calc_squire(a:int,b:int,c:int):
+def calc_squire(a:int=Query(gt=0),b:int=Query(gt=0),c:int=Query(gt=0)):
     p = (a + b + c) / 2
     return {"P":a+b+c, 
             "S": (p * (p - a) * (p - b) * (p - c))**(0.5)}
